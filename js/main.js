@@ -52,6 +52,7 @@
 			this.twitterFeed();
 			this.tabLavaHover();
 			this.videoBg();
+			this.demoForm();
 
 			/* Call function if Owl Carousel plugin is included */
 			if ( $.fn.owlCarousel ) {
@@ -1746,6 +1747,21 @@
 					return;
 				}
 			}
+		},
+		demoForm: function() {
+			$('#demo-form').submit(function(e){
+				e.preventDefault();
+				$.ajax({
+				  url: $('#demo-form').attr('action'),
+				  type: 'POST',
+				  data : $('#demo-form').serialize(),
+				  success: function(data){
+					// TODO: Change to appropriate data
+					$("#demo-result").text(data.text)
+				  }
+				});
+				return;
+			});
 		},
 		progressBars: function () {
 			var self = this;
